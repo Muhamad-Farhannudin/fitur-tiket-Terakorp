@@ -3,7 +3,7 @@ import clsx from "clsx";
 import Table from "react-bootstrap/Table";
 import { Fade } from "react-reveal";
 import Select from "react-select";
-import Flatpickr from "React-Flatpickr";
+import Flatpickr from "react-flatpickr";
 
 export default function TableList({ children }) {
   const [dateState, setDateState] = useState<any>({
