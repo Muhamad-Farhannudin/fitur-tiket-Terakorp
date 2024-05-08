@@ -1,0 +1,82 @@
+//
+// Nav
+//
+
+.icons-style {
+  font-weight: bold;
+}
+
+.nav-link {
+  &:hover {
+		transition: 0.3s;
+    background-color: #e7e7e7 !important;
+  }
+}
+
+// Line tabs
+.nav-line-tabs {
+  border-bottom-width: 1px;
+  border-bottom-style: solid;
+  border-bottom-color: var(--#{$prefix}border-color);
+
+  .nav-item {
+    margin-bottom: -1px;
+    // Base link
+    .nav-link {
+      color: $dark;
+      border: 0;
+      border-bottom: 1px solid transparent;
+      transition: $transition-link;
+      padding: 3px 15px 0 15px;
+      margin: 0 1rem;
+			
+			&:hover {
+				color: rgb(78, 78, 80);
+			}
+		}
+
+    // First Item
+    &:first-child {
+      .nav-link {
+        margin-left: 0;
+      }
+    }
+
+    // Last Item
+    &:last-child {
+      .nav-link {
+        margin-right: 0;
+      }
+    }
+  }
+
+  // Active & Hover States
+  .nav-item .nav-link.active,
+  .nav-item.show .nav-link,
+  .nav-item .nav-link:hover:not(.disabled) {
+    background-color: transparent;
+    border: 0;
+    border-bottom: 2px solid var(--#{$prefix}primary);
+    transition: $transition-link;
+  }
+
+  // 2x Line
+  &.nav-line-tabs-2x {
+    border-bottom-width: 2px;
+
+    .nav-item {
+      margin-bottom: -2px;
+
+      .nav-link {
+        border-bottom-width: 2px;
+      }
+    }
+
+    // Active & Hover States
+    .nav-item .nav-link.active,
+    .nav-item.show .nav-link,
+    .nav-item .nav-link:hover:not(.disabled) {
+      border-bottom-width: 2px;
+    }
+  }
+}
