@@ -53,8 +53,13 @@
 }
 
 // Tablet & mobile modes
+// Tablet & mobile modes
 @include media-breakpoint-down(lg) {
     .app-sidebar-logo {
-        display: none;
+      display: none; // Semua logo sidebar disembunyikan pada mode tablet dan mobile
     }
-}
+  
+    .app-sidebar {
+      display: block !important; // Tampilkan sidebar pada mode tablet dan mobile
+    }
+  }

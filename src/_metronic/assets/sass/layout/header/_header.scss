@@ -160,7 +160,7 @@
 // Tablet & mobile modes
 @include media-breakpoint-down(lg) {
 	.app-header { 
-        background-color: var(--#{$prefix}app-header-minimize-bg-color);
+        background-color: white;
         border-bottom: 1px solid var(--#{$prefix}border-color) !important;
 
 		.page-title {

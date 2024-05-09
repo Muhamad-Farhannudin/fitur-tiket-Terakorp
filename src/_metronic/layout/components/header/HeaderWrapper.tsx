@@ -39,7 +39,7 @@ export function HeaderWrapper() {
           <>
             {config.layoutType !== 'dark-header' && config.layoutType !== 'light-header' ? (
               <div
-                className='d-flex align-items-center d-lg-none ms-n2 me-2'
+                className='d-flex align-items-center d-lg-none ms-n2 me-2 bg-white'
                 title='Show sidebar menu'
               >
                 <div
@@ -48,7 +48,7 @@ export function HeaderWrapper() {
                 >
                   <KTIcon iconName='abstract-14' className=' fs-1' />
                 </div>
-                <div className='d-flex align-items-center flex-grow-1 flex-lg-grow-0'>
+                {/* <div className='d-flex align-items-center flex-grow-1 flex-lg-grow-0'>
                   <Link to='/' className='d-lg-none'>
                       <img
                         alt='Logo'
@@ -56,12 +56,12 @@ export function HeaderWrapper() {
                         className='h-30px'
                       />
                   </Link>
-                </div>
+                </div> */}
               </div>
             ) : null}
           </>
         )}
-
+{/* 
         {!(config.layoutType === 'dark-sidebar' || config.layoutType === 'light-sidebar') && (
           <div className='d-flex align-items-center flex-grow-1 flex-lg-grow-0 me-lg-15'>
             <Link to='/dashboard'>
@@ -112,7 +112,7 @@ export function HeaderWrapper() {
               </div>
             )}
           <Navbar />
-        </div>
+        </div> */}
       </div>
     </div>
   )
