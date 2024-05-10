@@ -43,6 +43,8 @@
     "react-table": "^7.7.0",
     "react-topbar-progress-indicator": "4.1.1",
     "socicon": "3.0.5",
+    "uuid": "^9.0.1",
+    "uuidv4": "^6.2.13",
     "yup": "^1.0.0"
   },
   "devDependencies": {
