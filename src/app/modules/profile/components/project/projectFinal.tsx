@@ -11,7 +11,7 @@ const ProjectFinal: React.FC = ({children}) => {
   return (
     <Fade up>
       <Content>
-        <div className="d-flex justify-content-between bg-white border-2 rounded border border-secondary pt-10 px-10" style={{ marginTop: "50px" }}>
+         <div className="d-flex justify-content-between bg-white border-2 rounded border border-secondary pt-10 px-10" style={{ marginTop: "50px" }}>
           <div className="">
             <div className="d-flex align-items-center mb-6">
               <ul
@@ -39,7 +39,7 @@ const ProjectFinal: React.FC = ({children}) => {
             <h3 className="ms-5 fs-3 fw-bold font-monospace">{children}</h3>
           </div>
 
-          <ul className="list-unstyled me-20">
+          <ul className="list-unstyled me-20 list-overview">
             <li>
               <Form>
                 {["checkbox"].map((type) => (
@@ -93,7 +93,7 @@ const ProjectFinal: React.FC = ({children}) => {
               </Form>
             </li>
           </ul>
-        </div>
+        </div> 
 
         <div className="tab-content">
           <Fade left>

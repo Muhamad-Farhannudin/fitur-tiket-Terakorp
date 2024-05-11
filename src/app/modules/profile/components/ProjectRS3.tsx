@@ -50,60 +50,60 @@ const ProjectRS3: React.FC = () => {
           <h3 className="ms-5">Cihos CRT</h3>
         </div>
 
-        <ul className="list-unstyled me-20">
-          <li>
-            <Form>
-              {["checkbox"].map((type) => (
-                <div key={`default-${type}`} className="mb-3">
-                  <Form.Check // prettier-ignore
-                    type={type}
-                    id={`default-${type}`}
-                    label={`not selected`}
-                  />
-                </div>
-              ))}
-            </Form>
-          </li>
-          <li>
-            <Form>
-              {["checkbox"].map((type) => (
-                <div key={`default-${type}`} className="mb-3">
-                  <Form.Check // prettier-ignore
-                    type={type}
-                    id={`default-${type}`}
-                    label={`Raafi`}
-                  />
-                </div>
-              ))}
-            </Form>
-          </li>
-          <li>
-            <Form>
-              {["checkbox"].map((type) => (
-                <div key={`default-${type}`} className="mb-3">
-                  <Form.Check // prettier-ignore
-                    type={type}
-                    id={`default-${type}`}
-                    label={`Andi`}
-                  />
-                </div>
-              ))}
-            </Form>
-          </li>
-          <li>
-            <Form>
-              {["checkbox"].map((type) => (
-                <div key={`default-${type}`} className="mb-3">
-                  <Form.Check // prettier-ignore
-                    type={type}
-                    id={`default-${type}`}
-                    label={`Mario`}
-                  />
-                </div>
-              ))}
-            </Form>
-          </li>
-        </ul>
+        <ul className="list-unstyled me-20 list-overview">
+            <li>
+              <Form>
+                {["checkbox"].map((type) => (
+                  <div key={`default-${type}`} className="mb-3">
+                    <Form.Check // prettier-ignore
+                      type={type}
+                      id={`default-${type}`}
+                      label={`not selected`}
+                    />
+                  </div>
+                ))}
+              </Form>
+            </li>
+            <li>
+              <Form>
+                {["checkbox"].map((type) => (
+                  <div key={`default-${type}`} className="mb-3">
+                    <Form.Check // prettier-ignore
+                      type={type}
+                      id={`default-${type}`}
+                      label={`Raafi`}
+                    />
+                  </div>
+                ))}
+              </Form>
+            </li>
+            <li>
+              <Form>
+                {["checkbox"].map((type) => (
+                  <div key={`default-${type}`} className="mb-3">
+                    <Form.Check // prettier-ignore
+                      type={type}
+                      id={`default-${type}`}
+                      label={`Andi`}
+                    />
+                  </div>
+                ))}
+              </Form>
+            </li>
+            <li>
+              <Form>
+                {["checkbox"].map((type) => (
+                  <div key={`default-${type}`} className="mb-3">
+                    <Form.Check // prettier-ignore
+                      type={type}
+                      id={`default-${type}`}
+                      label={`Mario`}
+                    />
+                  </div>
+                ))}
+              </Form>
+            </li>
+          </ul>
       </div>
 
       <div className="tab-content">

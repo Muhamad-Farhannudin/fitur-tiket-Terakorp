@@ -39,7 +39,7 @@ const ProjectRS1: React.FC = () => {
             <h3 className="ms-5 fs-3 fw-bold font-monospace">RS Al Islam Group</h3>
           </div>
 
-          <ul className="list-unstyled me-20">
+          <ul className="list-unstyled me-20 list-overview">
             <li>
               <Form>
                 {["checkbox"].map((type) => (

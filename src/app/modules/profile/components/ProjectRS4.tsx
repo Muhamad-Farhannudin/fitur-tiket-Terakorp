@@ -50,7 +50,7 @@ const ProjectRS4: React.FC = () => {
           <h3 className="ms-5">Cihos CGC</h3>
         </div>
 
-        <ul className="list-unstyled me-20">
+        <ul className="list-unstyled me-20 list-overview">
           <li>
             <Form>
               {["checkbox"].map((type) => (

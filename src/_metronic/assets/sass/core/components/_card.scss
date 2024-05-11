@@ -326,6 +326,13 @@
 }
 
 @include media-breakpoint-down(md) {
+  .list-overview {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 5px; 
+    transform: translate(-110px, -110px);
+
+  }
   .card {
     width: 100% !important;
   }
