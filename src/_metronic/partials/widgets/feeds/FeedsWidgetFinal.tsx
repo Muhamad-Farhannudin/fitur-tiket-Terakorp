@@ -21,6 +21,7 @@ const FeedsWidgetFinal: React.FC<Props> = ({ className, children, link1, }) => {
               flex-nowrap
               ms-6
               mt-2
+              overview
             "
             role="tablist"
           >

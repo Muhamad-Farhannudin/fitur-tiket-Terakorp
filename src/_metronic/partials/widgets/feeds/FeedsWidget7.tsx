@@ -19,6 +19,7 @@ const FeedsWidget7: React.FC<Props> = ({ className }) => {
               flex-nowrap
               ms-6
               mt-2
+              overview
             "
             role="tablist"
           >

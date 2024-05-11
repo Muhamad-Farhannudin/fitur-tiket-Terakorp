@@ -8,6 +8,9 @@ import ButtonDelete from "../buttonDelete/ButtonDelete";
 import { v4 as uuidv4 } from "uuid";
 
 export default function TableList({ children }) {
+  let myuuid = uuidv4();
+
+  console.log("Your UUID is: " + myuuid);
 
   const [dateState, setDateState] = useState<any>({
     date1: new Date(),
@@ -84,17 +87,16 @@ export default function TableList({ children }) {
   const handleDelete = (id) => {
     const newData = data.filter((item) => item.id !== id);
     setData(newData);
-    console.log(`deleted ${id}`);
   };
 
   const handleAdd = () => {
     const newItemId = uuidv4();
     const newItem = {
       id: newItemId,
-      Delete: <ButtonDelete onClick={() => handleDelete(newItem.id)} />,
+      Delete: <ButtonDelete onClick={() => handleDelete(newItemId)} />,
       Priority: (
         <Select
-          className="react-select-styled z-index-5"
+          className="react-select-styled z-index-5 priority"
           classNamePrefix="react-select z-index-5"
           options={Priority.map((item) => {
             item.label = (
@@ -115,7 +117,7 @@ export default function TableList({ children }) {
           onChange={([date1]) => {
             setDateState({ date1 });
           }}
-          className="form-control"
+          className="form-control inputDate"
           placeholder="Pick date"
         />
       ),
@@ -217,10 +219,10 @@ export default function TableList({ children }) {
                   <thead className="border-gray border-bottom fs-5 fw-bold head">
                     <tr>
                       <th></th>
-                      <th style={{ minWidth: "100px", backgroundColor: "white" }} className="thHead">
+                      <th style={{ minWidth: "100px", backgroundColor: "white" }} className="thPriority">
                         Priority
                       </th>
-                      <th style={{ minWidth: "150px" }}>Create Date</th>
+                      <th style={{ minWidth: "150px" }} className={"thDate"}>Create Date</th>
                       <th style={{ minWidth: "100px" }}>Id Tiket</th>
                       <th style={{ minWidth: "100px" }}>Nama Project</th>
                       <th style={{ minWidth: "100px" }}>Judul Tiket</th>
@@ -370,36 +372,6 @@ export default function TableList({ children }) {
                     })}
                     {/* data kosong */}
                     {/* <tr>
-                      <td>-</td>
-                      <td>-</td>
-                      <td>-</td>
-                      <td>-</td>
-                      <td>-</td>
-                      <td>-</td>
-                      <td>-</td>
-                      <td>-</td>
-                      <td>-</td>
-                      <td>-</td>
-                      <td>-</td>
-                      <td>-</td>
-                      <td>-</td>
-                    </tr>
-                    <tr>
-                      <td>-</td>
-                      <td>-</td>
-                      <td>-</td>
-                      <td>-</td>
-                      <td>-</td>
-                      <td>-</td>
-                      <td>-</td>
-                      <td>-</td>
-                      <td>-</td>
-                      <td>-</td>
-                      <td>-</td>
-                      <td>-</td>
-                      <td>-</td>
-                    </tr>
-                    <tr>
                       <td>-</td>
                       <td>-</td>
                       <td>-</td>
