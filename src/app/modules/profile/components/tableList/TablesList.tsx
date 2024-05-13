@@ -121,6 +121,9 @@ export default function TableList({ children }) {
           }}
           className="form-control inputDate"
           placeholder="Pick date"
+          options={{
+            dateFormat: "d-m-Y",
+          }}
         />
       ),
       IdTiket: <input type="text" className="form-control form-control-white" placeholder="Id tiket" />,
@@ -172,6 +175,9 @@ export default function TableList({ children }) {
           }}
           className="form-control"
           placeholder="Pick date"
+          options={{
+            dateFormat: "d-m-Y",
+          }}
         />
       ),
       DueDate: (
@@ -182,6 +188,9 @@ export default function TableList({ children }) {
           }}
           className="form-control"
           placeholder="Pick date"
+          options={{
+            dateFormat: "d-m-Y",
+          }}
         />
       ),
       Mondays: <input type="number" className="form-control form-control-white" placeholder="" />,
@@ -230,33 +239,51 @@ export default function TableList({ children }) {
           <div className="tab-pane container-fluid my-5">
             <div className="pb-3">
               <div className="d-flex justify-content-start align-items-center gap-3 ">
-                <OverlayTrigger overlay={<Tooltip className="mb-3" id={`tooltip-top`}>Collpase group</Tooltip>}>
+                <OverlayTrigger
+                  overlay={
+                    <Tooltip className="mb-3" id={`tooltip-top`}>
+                      Collpase group
+                    </Tooltip>
+                  }
+                >
                   <div className="cursor-pointer" onClick={() => toggleSubmenu("notStarted")}>
-                  <i
-                    className={clsx("bi cursor-pointer", {
-                      "bi-caret-right-fill": !submenuOpen.notStarted,
-                      "bi-caret-down-fill": submenuOpen.notStarted,
-                    })}
-                    onClick={() => toggleSubmenu("notStarted")}
-                  ></i>
+                    <i
+                      className={clsx("bi cursor-pointer", {
+                        "bi-caret-right-fill": !submenuOpen.notStarted,
+                        "bi-caret-down-fill": submenuOpen.notStarted,
+                      })}
+                      onClick={() => toggleSubmenu("notStarted")}
+                    ></i>
                   </div>
                 </OverlayTrigger>
 
                 <span className="bg-gray-300 fs-4 fw-bold px-5 py-2 cursor-pointer ms-3 rounded-pill" onClick={() => toggleSubmenu("notStarted")}>
                   {children}
                 </span>
-                <OverlayTrigger overlay={<Tooltip className="mb-3"  id={`tooltip-top`}>Jumlah Task</Tooltip>}>
-                <span className="text-dark-emphasis ms-3 cursor-pointer">{data.length}</span>
+                <OverlayTrigger
+                  overlay={
+                    <Tooltip className="mb-3" id={`tooltip-top`}>
+                      Jumlah Task
+                    </Tooltip>
+                  }
+                >
+                  <span className="text-dark-emphasis ms-3 cursor-pointer">{data.length}</span>
                 </OverlayTrigger>
 
                 <div className="d-flex justify-content-center gap-2 align-items-center py-2 px-2 task" onClick={handleAdd}>
                   <i class="bi bi-plus-lg fs-3 fw-bold"></i>
                   <span className="fs-4 fw-normal text-dark-emphasis z-index-3">Add Task</span>
                 </div>
-                <OverlayTrigger overlay={<Tooltip className="mb-3" id={`tooltip-top`}>Delete</Tooltip>}>
-                <div>
-                  <ButtonDelete onClick={handleDelete} />
-                </div>
+                <OverlayTrigger
+                  overlay={
+                    <Tooltip className="mb-3" id={`tooltip-top`}>
+                      Delete
+                    </Tooltip>
+                  }
+                >
+                  <div>
+                    <ButtonDelete onClick={handleDelete} />
+                  </div>
                 </OverlayTrigger>
               </div>
             </div>
