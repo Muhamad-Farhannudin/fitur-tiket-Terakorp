@@ -64,10 +64,11 @@ export default function TableList({ children }) {
     });
   };
 
+  const [isDataAdded, setIsDataAdded] = useState(false);
   const [data, setData] = useState([
     {
       id: uuidv4(),
-      Delete: null,
+      checked: false,
       Priority: null,
       CreateDate: null,
       IdTiket: null,
@@ -84,16 +85,15 @@ export default function TableList({ children }) {
     },
   ]);
 
-  const handleDelete = (id) => {
-    const newData = data.filter((item) => item.id !== id);
-    setData(newData);
-  };
+  useEffect(() => {
+    handleAdd(); // Tambahkan baris baru saat komponen pertama kali dimuat
+  }, []);
 
   const handleAdd = () => {
     const newItemId = uuidv4();
     const newItem = {
       id: newItemId,
-      Delete: <ButtonDelete onClick={() => handleDelete(newItemId)} />,
+      checked: false,
       Priority: (
         <Select
           className="react-select-styled z-index-5 priority"
@@ -185,8 +185,36 @@ export default function TableList({ children }) {
       Mondays: <input type="number" className="form-control form-control-white" placeholder="" />,
       Comments: <input type="text" className="form-control form-control-white" placeholder="Comments" />,
     };
-    setData([...data, newItem]);
+    if (!isDataAdded) {
+      // Tambahkan kondisi untuk menentukan apakah data sudah ditambahkan atau belum
+      setData([newItem]);
+      setIsDataAdded(true);
+    } else {
+      setData([...data, newItem]);
+    }
   };
+
+  const handleCheckboxChange = (id: string) => {
+    const newData = data.map((item) => {
+      if (item.id === id) {
+        return { ...item, checked: !item.checked };
+      }
+      return item;
+    });
+    setData(newData);
+  };
+
+  const handleDelete = () => {
+    const newData = data.filter((item) => !item.checked);
+    setData(newData);
+  };
+
+  const handleHeaderCheckboxChange = () => {
+    const newData = data.map((item) => ({ ...item, checked: !selectAllChecked }));
+    setData(newData);
+  };
+
+  const selectAllChecked = data.every((item) => item.checked);
 
   return (
     <div className="tab-content card my-11">
@@ -194,7 +222,7 @@ export default function TableList({ children }) {
         <div>
           <div className="tab-pane container-fluid my-5">
             <div className="pb-3">
-              <div className="d-flex justify-content-start align-items-center">
+              <div className="d-flex justify-content-start align-items-center gap-3">
                 <i
                   className={clsx("bi", {
                     "bi-caret-right-fill": !submenuOpen.notStarted,
@@ -206,10 +234,14 @@ export default function TableList({ children }) {
                 <span className="bg-gray-300 fs-4 fw-bold px-5 py-2 cursor-pointer ms-3 rounded-pill" onClick={() => toggleSubmenu("notStarted")}>
                   {children}
                 </span>
+                  <span className="text-dark-emphasis ms-3">{data.length}</span>
 
-                <div className="d-flex justify-content-center gap-2 align-items-center py-2 px-2 ms-5 task" onClick={handleAdd}>
+                <div className="d-flex justify-content-center gap-2 align-items-center py-2 px-2 task" onClick={handleAdd}>
                   <i class="bi bi-plus-lg fs-3 fw-bold"></i>
                   <span className="fs-4 fw-normal text-dark-emphasis z-index-3">Add Task</span>
+                </div>
+                <div>
+                  <ButtonDelete onClick={handleDelete} />
                 </div>
               </div>
             </div>
@@ -218,11 +250,16 @@ export default function TableList({ children }) {
                 <Table striped hover responsive>
                   <thead className="border-gray border-bottom fs-5 fw-bold head">
                     <tr>
-                      <th></th>
+                      <th>
+                        <input className="form-check-input cursor-pointer" type="checkbox" checked={selectAllChecked} id="flexRadioLg" onChange={handleHeaderCheckboxChange} style={{width: "17px", height: "17px"}} />
+                        {/* <input type="checkbox" checked={selectAllChecked} onChange={handleHeaderCheckboxChange} className="cursor-pointer"/> */}
+                      </th>
                       <th style={{ minWidth: "100px", backgroundColor: "white" }} className="thPriority">
                         Priority
                       </th>
-                      <th style={{ minWidth: "150px" }} className={"thDate"}>Create Date</th>
+                      <th style={{ minWidth: "150px" }} className={"thDate"}>
+                        Create Date
+                      </th>
                       <th style={{ minWidth: "100px" }}>Id Tiket</th>
                       <th style={{ minWidth: "100px" }}>Nama Project</th>
                       <th style={{ minWidth: "100px" }}>Judul Tiket</th>
@@ -238,119 +275,12 @@ export default function TableList({ children }) {
                   </thead>
                   <tbody>
                     {/* ada datanya */}
-                    {/* <tr>
-                      <td style={{ minWidth: "150px", position: "sticky", left: "0px", zIndex: "9999" }}>
-                        <Select
-                          className="react-select-styled z-index-5 bg-white"
-                          classNamePrefix="react-select z-index-5"
-                          options={Priority.map((item) => {
-                            item.label = (
-                              <div className="label cursor-pointer">
-                                <i class={`bi bi-flag-fill me-3 ${item.className}`}></i>
-                                <span>{item.label}</span>
-                              </div>
-                            );
-                            return item;
-                          })}
-                          placeholder="Select an option"
-                          defaultValue={Priority[0]}
-                        />
-                      </td>
-                      <td style={{ minWidth: "150px" }}>
-                        <Flatpickr
-                          value={dateState.date}
-                          onChange={([date1]) => {
-                            setDateState({ date1 });
-                          }}
-                          className="form-control"
-                          placeholder="Pick date"
-                        />
-                      </td>
-                      <td style={{ minWidth: "150px" }}>
-                        <input type="text" className="form-control form-control-white" placeholder="Id tiket" />
-                      </td>
-                      <td style={{ minWidth: "150px" }}>
-                        <input type="text" className="form-control form-control-white" placeholder="Nama project" />
-                      </td>
-                      <td style={{ minWidth: "150px" }}>
-                        <input type="text" className="form-control form-control-white" placeholder="Judul tiket" />
-                      </td>
-                      <td style={{ minWidth: "150px" }}>
-                        <input type="text" className="form-control form-control-white" placeholder="Type" />
-                      </td>
-                      <td style={{ minWidth: "150px" }}>
-                        <input type="text" className="form-control form-control-white" placeholder="Kategori" />
-                      </td>
-                      <td style={{ minWidth: "150px" }}>
-                        <Select
-                          className="react-select-styled z-index-5 bg-white cursor-pointer"
-                          classNamePrefix="react-select z-index-5"
-                          options={AssignFrom.map((item) => {
-                            item.label = (
-                              <div className="label cursor-pointer">
-                                <div className={`d-flex justify-content-center align-items-center rounded-circle ${item.className}`} style={{ width: "20px", height: "20px" }}>
-                                  <span>{item.label[0]}</span>
-                                </div>
-                                <span>{item.label}</span>
-                              </div>
-                            );
-                            return item;
-                          })}
-                          defaultValue={AssignFrom[0]}
-                        />
-                      </td>
-                      <td style={{ minWidth: "150px" }}>
-                        <Select
-                          className="react-select-styled z-index-5 bg-white cursor-pointer"
-                          classNamePrefix="react-select z-index-5"
-                          options={AssignTo.map((item) => {
-                            item.label = (
-                              <div className="label cursor-pointer">
-                                <div className={`d-flex justify-content-center align-items-center rounded-circle ${item.className}`} style={{ width: "20px", height: "20px" }}>
-                                  <span>{item.label[0]}</span>
-                                </div>
-                                <span>{item.label}</span>
-                              </div>
-                            );
-                            return item;
-                          })}
-                          defaultValue={AssignTo[1]}
-                        />
-                      </td>
-
-                      <td style={{ minWidth: "150px" }}>
-                        <Flatpickr
-                          value={dateState.date}
-                          onChange={([date1]) => {
-                            setDateState({ date1 });
-                          }}
-                          className="form-control"
-                          placeholder="Pick date"
-                        />
-                      </td>
-                      <td style={{ minWidth: "150px" }}>
-                        <Flatpickr
-                          value={dateState.date}
-                          onChange={([date1]) => {
-                            setDateState({ date1 });
-                          }}
-                          className="form-control"
-                          placeholder="Pick date"
-                        />
-                      </td>
-                      <td style={{ minWidth: "100px" }}>
-                        <input type="number" className="form-control form-control-white" placeholder="" />
-                      </td>
-                      <td style={{ minWidth: "150px" }}>
-                        <input type="text" className="form-control form-control-white" placeholder="Comments" />
-                      </td>
-                    </tr> */}
                     {data.map((item) => {
                       return (
                         <tr key={item.id}>
-                          <td>
-                            {/* <ButtonDelete onClick={() => handleDelete(item.id)} /> */}
-                            {item.Delete}
+                          <td className="d-flex justify-content-center mt-3">
+                            {/* <input type="checkbox" checked={item.checked} onChange={() => handleCheckboxChange(item.id)}  className="cursor-pointer"/> */}
+                            <input className="form-check-input cursor-pointer" type="checkbox" id="flexRadioLg" checked={item.checked} onChange={() => handleCheckboxChange(item.id)} style={{ width: "17px", height: "17px" }} />
                           </td>
                           <td style={{ minWidth: "150px", zIndex: "111", height: "auto" }} className="tdRow">
                             {item.Priority}
@@ -370,37 +300,6 @@ export default function TableList({ children }) {
                         </tr>
                       );
                     })}
-                    {/* data kosong */}
-                    {/* <tr>
-                      <td>-</td>
-                      <td>-</td>
-                      <td>-</td>
-                      <td>-</td>
-                      <td>-</td>
-                      <td>-</td>
-                      <td>-</td>
-                      <td>-</td>
-                      <td>-</td>
-                      <td>-</td>
-                      <td>-</td>
-                      <td>-</td>
-                      <td>-</td>
-                    </tr>
-                    <tr>
-                      <td>-</td>
-                      <td>-</td>
-                      <td>-</td>
-                      <td>-</td>
-                      <td>-</td>
-                      <td>-</td>
-                      <td>-</td>
-                      <td>-</td>
-                      <td>-</td>
-                      <td>-</td>
-                      <td>-</td>
-                      <td>-</td>
-                      <td>-</td>
-                    </tr> */}
                   </tbody>
                 </Table>
               </div>

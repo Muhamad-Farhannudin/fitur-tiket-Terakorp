@@ -1,17 +1,28 @@
 import { Content } from "../../../../../_metronic/layout/components/content/Content";
 import clsx from "clsx";
 import Form from "react-bootstrap/Form";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Fade } from "react-reveal";
 import TableList from "../tableList/TablesList";
+import axios from "axios";
 
-const ProjectFinal: React.FC = ({children}) => {
+const ProjectFinal: React.FC = ({ children }) => {
   const [tab, setTab] = useState("List");
+  // const [post, setPost] = useState([]);
+  // useEffect(() => {
+  //   axios
+  //     .get("https://jsonplaceholder.typicode.com/posts/")
+  //     .then((res) => {
+  //       console.log(res.data);
+  //       setPost(res.data);
+  //     })
+  //     .catch((err) => console.log(err));
+  // }, []);
 
   return (
     <Fade up>
       <Content>
-         <div className="d-flex justify-content-between bg-white border-2 rounded border border-secondary pt-10 px-10" style={{ marginTop: "50px" }}>
+        <div className="d-flex justify-content-between bg-white border-2 rounded border border-secondary pt-10 px-10" style={{ marginTop: "50px" }}>
           <div className="">
             <div className="d-flex align-items-center mb-6">
               <ul
@@ -93,9 +104,10 @@ const ProjectFinal: React.FC = ({children}) => {
               </Form>
             </li>
           </ul>
-        </div> 
+        </div>
 
         <div className="tab-content">
+          {/* Table List */}
           <Fade left>
             <div className={clsx("tab-pane", { active: tab === "List" })}>
               {/* not stardted */}
@@ -112,6 +124,12 @@ const ProjectFinal: React.FC = ({children}) => {
           <Fade left>
             <div className={clsx("tab-pane", { active: tab === "Ganchart" })}>
               <h1>Ganchart</h1>
+              {/* {post.slice(0, 5).map((item) => (
+                <div key={item?.id}>
+                  <h1>{item?.title}</h1>
+                  <p>{item?.body}</p>
+                </div>
+              ))}  */}
             </div>
           </Fade>
         </div>
