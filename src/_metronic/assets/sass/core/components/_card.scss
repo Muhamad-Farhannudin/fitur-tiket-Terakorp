@@ -341,7 +341,7 @@
   }
 
   .thPriority {
-    width: 80% !important;
+    width: 90% !important;
   }
 
   .thDate {
@@ -351,6 +351,13 @@
     width: 80% !important;
   }
   .priority {
-    width: 80% !important;
+    width: 90% !important;
   }
+}
+
+.selected-row {
+  background-color: #cde4fd !important;
+  // border: 1px solid black;
+  // border-radius: 15px !important;
+  transition: background-color 0.3s ease;
 }

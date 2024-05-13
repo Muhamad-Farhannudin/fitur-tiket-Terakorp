@@ -6,6 +6,8 @@ import Select from "react-select";
 import Flatpickr from "react-flatpickr";
 import ButtonDelete from "../buttonDelete/ButtonDelete";
 import { v4 as uuidv4 } from "uuid";
+import OverlayTrigger from "react-bootstrap/OverlayTrigger";
+import Tooltip from "react-bootstrap/Tooltip";
 
 export default function TableList({ children }) {
   let myuuid = uuidv4();
@@ -202,6 +204,11 @@ export default function TableList({ children }) {
       return item;
     });
     setData(newData);
+    if (selectedRows.includes(id)) {
+      setSelectedRows(selectedRows.filter((rowId) => rowId !== id));
+    } else {
+      setSelectedRows([...selectedRows, id]);
+    }
   };
 
   const handleDelete = () => {
@@ -222,37 +229,44 @@ export default function TableList({ children }) {
         <div>
           <div className="tab-pane container-fluid my-5">
             <div className="pb-3">
-              <div className="d-flex justify-content-start align-items-center gap-3">
-                <i
-                  className={clsx("bi", {
-                    "bi-caret-right-fill": !submenuOpen.notStarted,
-                    "bi-caret-down-fill": submenuOpen.notStarted,
-                  })}
-                  onClick={() => toggleSubmenu("notStarted")}
-                ></i>
+              <div className="d-flex justify-content-start align-items-center gap-3 ">
+                <OverlayTrigger overlay={<Tooltip className="mb-3" id={`tooltip-top`}>Collpase group</Tooltip>}>
+                  <div className="cursor-pointer" onClick={() => toggleSubmenu("notStarted")}>
+                  <i
+                    className={clsx("bi cursor-pointer", {
+                      "bi-caret-right-fill": !submenuOpen.notStarted,
+                      "bi-caret-down-fill": submenuOpen.notStarted,
+                    })}
+                    onClick={() => toggleSubmenu("notStarted")}
+                  ></i>
+                  </div>
+                </OverlayTrigger>
 
                 <span className="bg-gray-300 fs-4 fw-bold px-5 py-2 cursor-pointer ms-3 rounded-pill" onClick={() => toggleSubmenu("notStarted")}>
                   {children}
                 </span>
-                  <span className="text-dark-emphasis ms-3">{data.length}</span>
+                <OverlayTrigger overlay={<Tooltip className="mb-3"  id={`tooltip-top`}>Jumlah Task</Tooltip>}>
+                <span className="text-dark-emphasis ms-3 cursor-pointer">{data.length}</span>
+                </OverlayTrigger>
 
                 <div className="d-flex justify-content-center gap-2 align-items-center py-2 px-2 task" onClick={handleAdd}>
                   <i class="bi bi-plus-lg fs-3 fw-bold"></i>
                   <span className="fs-4 fw-normal text-dark-emphasis z-index-3">Add Task</span>
                 </div>
+                <OverlayTrigger overlay={<Tooltip className="mb-3" id={`tooltip-top`}>Delete</Tooltip>}>
                 <div>
                   <ButtonDelete onClick={handleDelete} />
                 </div>
+                </OverlayTrigger>
               </div>
             </div>
             {submenuOpen.notStarted && (
               <div style={{ maxWidth: "1800px", overflowX: "auto", minHeight: "380px", height: "auto", display: "flex" }}>
-                <Table striped hover responsive>
+                <Table responsive>
                   <thead className="border-gray border-bottom fs-5 fw-bold head">
                     <tr>
                       <th>
-                        <input className="form-check-input cursor-pointer" type="checkbox" checked={selectAllChecked} id="flexRadioLg" onChange={handleHeaderCheckboxChange} style={{width: "17px", height: "17px"}} />
-                        {/* <input type="checkbox" checked={selectAllChecked} onChange={handleHeaderCheckboxChange} className="cursor-pointer"/> */}
+                        <input className="form-check-input cursor-pointer" type="checkbox" checked={selectAllChecked} id="flexRadioLg" onChange={handleHeaderCheckboxChange} style={{ width: "17px", height: "17px" }} />
                       </th>
                       <th style={{ minWidth: "100px", backgroundColor: "white" }} className="thPriority">
                         Priority
@@ -279,7 +293,6 @@ export default function TableList({ children }) {
                       return (
                         <tr key={item.id}>
                           <td className="d-flex justify-content-center mt-3">
-                            {/* <input type="checkbox" checked={item.checked} onChange={() => handleCheckboxChange(item.id)}  className="cursor-pointer"/> */}
                             <input className="form-check-input cursor-pointer" type="checkbox" id="flexRadioLg" checked={item.checked} onChange={() => handleCheckboxChange(item.id)} style={{ width: "17px", height: "17px" }} />
                           </td>
                           <td style={{ minWidth: "150px", zIndex: "111", height: "auto" }} className="tdRow">
