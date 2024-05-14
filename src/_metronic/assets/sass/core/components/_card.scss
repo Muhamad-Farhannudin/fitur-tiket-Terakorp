@@ -327,10 +327,11 @@
 
 @include media-breakpoint-down(md) {
   .list-overview {
+    cursor: pointer;
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    grid-gap: 5px; 
-    transform: translate(-110px, -110px);
+    grid-gap: 10px; 
+    transform: translate(-210px, -110px);
 
   }
   .card {
@@ -345,10 +346,10 @@
   }
 
   .thDate {
-    width: 80% !important;
+    width: 90% !important;
   }
   .inputDate {
-    width: 80% !important;
+    width: 90% !important;
   }
   .priority {
     width: 90% !important;
