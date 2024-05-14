@@ -8,11 +8,11 @@ import ButtonDelete from "../buttonDelete/ButtonDelete";
 import { v4 as uuidv4 } from "uuid";
 import OverlayTrigger from "react-bootstrap/OverlayTrigger";
 import Tooltip from "react-bootstrap/Tooltip";
+import { differenceInDays, eachDayOfInterval, isWeekend } from "date-fns";
 
 export default function TableList({ children }) {
-  let myuuid = uuidv4();
-
-  console.log("Your UUID is: " + myuuid);
+  const [startDate, setStartDate] = useState(new Date());
+  const [dueDate, setDueDate] = useState(new Date());
 
   const [dateState, setDateState] = useState<any>({
     date1: new Date(),
@@ -169,10 +169,8 @@ export default function TableList({ children }) {
       ),
       StartDate: (
         <Flatpickr
-          value={dateState.date}
-          onChange={([date1]) => {
-            setDateState({ date1 });
-          }}
+          value={startDate}
+          onChange={(date) => setStartDate(date[0])}
           className="form-control"
           placeholder="Pick date"
           options={{
@@ -182,10 +180,8 @@ export default function TableList({ children }) {
       ),
       DueDate: (
         <Flatpickr
-          value={dateState.date}
-          onChange={([date1]) => {
-            setDateState({ date1 });
-          }}
+          value={dueDate}
+          onChange={(date) => setDueDate(date[0])}
           className="form-control"
           placeholder="Pick date"
           options={{
@@ -193,7 +189,7 @@ export default function TableList({ children }) {
           }}
         />
       ),
-      Mondays: <input type="number" className="form-control form-control-white" placeholder="" />,
+      Mondays: <input type="number" id="mondays" className="form-control form-control-white" />,
       Comments: <input type="text" className="form-control form-control-white" placeholder="Comments" />,
     };
     if (!isDataAdded) {

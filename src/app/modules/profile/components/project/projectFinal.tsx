@@ -54,7 +54,7 @@ const ProjectFinal: React.FC = ({ children }) => {
             <li>
               <Form>
                 {["checkbox"].map((type) => (
-                  <div key={`default-${type}`} className="mb-3">
+                  <div key={`default-${type}`} className="mb-3" style={{width: "auto"}}>
                     <Form.Check // prettier-ignore
                       type={type}
                       id={`default-${type}`}
@@ -67,7 +67,7 @@ const ProjectFinal: React.FC = ({ children }) => {
             <li>
               <Form>
                 {["checkbox"].map((type) => (
-                  <div key={`default-${type}`} className="mb-3">
+                  <div key={`default-${type}`} className="mb-3" style={{width: "auto"}}>
                     <Form.Check // prettier-ignore
                       type={type}
                       id={`default-${type}`}
@@ -80,7 +80,7 @@ const ProjectFinal: React.FC = ({ children }) => {
             <li>
               <Form>
                 {["checkbox"].map((type) => (
-                  <div key={`default-${type}`} className="mb-3">
+                  <div key={`default-${type}`} className="mb-3" style={{width: "auto"}}>
                     <Form.Check // prettier-ignore
                       type={type}
                       id={`default-${type}`}
@@ -93,7 +93,7 @@ const ProjectFinal: React.FC = ({ children }) => {
             <li>
               <Form>
                 {["checkbox"].map((type) => (
-                  <div key={`default-${type}`} className="mb-3">
+                  <div key={`default-${type}`} className="mb-3" style={{width: "auto"}}>
                     <Form.Check // prettier-ignore
                       type={type}
                       id={`default-${type}`}

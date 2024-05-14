@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import clsx from "clsx";
 import { Link } from "react-router-dom";
+import TableList from "../../../../app/modules/profile/components/tableList/TablesList";
+import { Fade } from "react-reveal";
 
 type Props = {
   className: string;
@@ -8,7 +10,7 @@ type Props = {
   link1: string;
 };
 
-const FeedsWidgetFinal: React.FC<Props> = ({ className, children, link1, }) => {
+const FeedsWidgetFinal: React.FC<Props> = ({ className, children, link1 }) => {
   const [tab, setTab] = useState("Overview");
   return (
     <>
@@ -46,7 +48,7 @@ const FeedsWidgetFinal: React.FC<Props> = ({ className, children, link1, }) => {
           </ul>
         </div>
         <div className="tab-content">
-          <div className={clsx("tab-pane", {active: tab === 'Overview'})}>
+          <div className={clsx("tab-pane", { active: tab === "Overview" })}>
             <div className="card-body pb-0">
               <h1 className="fs-2 fw-bold">Recent</h1>
               <ul>
@@ -59,7 +61,7 @@ const FeedsWidgetFinal: React.FC<Props> = ({ className, children, link1, }) => {
                 <h1 className="fs-2 fw-bold">Lists</h1>
                 <p className="p-3 fs-3">Name</p>
                 <ul className="fs-4 fw-semibold">
-                  <Link to={link1} style={{ color: '#000000' }}>
+                  <Link to={link1} style={{ color: "#000000" }}>
                     <li className="border-bottom border-2 border-gray list-unstyled py-3 fw-normal font-monospace">{children}</li>
                   </Link>
                 </ul>
@@ -67,11 +69,11 @@ const FeedsWidgetFinal: React.FC<Props> = ({ className, children, link1, }) => {
             </div>
           </div>
 
-          <div className={clsx("tab-pane", {active: tab === 'List'})}>
+          <div className={clsx("tab-pane", { active: tab === "List" })}>
             <h2 className="ms-4">List</h2>
           </div>
 
-          <div className={clsx("tab-pane", {active: tab === 'Board'})}>
+          <div className={clsx("tab-pane", { active: tab === "Board" })}>
             <h2 className="ms-4">Board</h2>
           </div>
         </div>

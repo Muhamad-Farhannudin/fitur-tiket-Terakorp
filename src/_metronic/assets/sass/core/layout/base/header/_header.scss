@@ -9,7 +9,7 @@
     align-items: stretch;
     background-color: var(--#{$prefix}app-header-base-bg-color);
     box-shadow: var(--#{$prefix}app-header-base-box-shadow);
-    border-bottom: var(--#{$prefix}app-header-base-border-bottom);
+    // border-bottom: var(--#{$prefix}app-header-base-border-bottom);
 }
 
 // Desktop mode
@@ -75,7 +75,7 @@
 
             background-color: var(--#{$prefix}app-header-sticky-bg-color);
             box-shadow: var(--#{$prefix}app-header-sticky-box-shadow);
-            border-bottom: var(--#{$prefix}app-header-sticky-border-bottom);
+            // border-bottom: var(--#{$prefix}app-header-sticky-border-bottom);
         }
 
         [data-kt-app-header-minimize="on"] & {
@@ -85,7 +85,7 @@
 
             background-color: var(--#{$prefix}app-header-minimize-bg-color);
             box-shadow: var(--#{$prefix}app-header-minimize-box-shadow);
-            border-bottom: var(--#{$prefix}app-header-minimize-border-bottom);
+            // border-bottom: var(--#{$prefix}app-header-minimize-border-bottom);
         }
 
         .app-header-mobile-drawer {
@@ -211,7 +211,7 @@
 
             background-color: var(--#{$prefix}app-header-sticky-bg-color);
             box-shadow: var(--#{$prefix}app-header-sticky-box-shadow);
-            border-bottom: var(--#{$prefix}app-header-sticky-border-bottom);
+            // border-bottom: var(--#{$prefix}app-header-sticky-border-bottom);
         }
 
         [data-kt-app-header-minimize="on"] & {            
@@ -221,7 +221,7 @@
             transition: $app-header-base-transition; 
             background-color: var(--#{$prefix}app-header-minimize-bg-color);
             box-shadow: var(--#{$prefix}app-header-minimize-box-shadow);
-            border-bottom: var(--#{$prefix}app-header-minimize-border-bottom);
+            // border-bottom: var(--#{$prefix}app-header-minimize-border-bottom);
         }
     }
 

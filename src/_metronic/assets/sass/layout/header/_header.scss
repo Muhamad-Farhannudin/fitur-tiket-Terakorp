@@ -161,7 +161,6 @@
 @include media-breakpoint-down(lg) {
 	.app-header { 
         background-color: white;
-        border-bottom: 1px solid var(--#{$prefix}border-color) !important;
 
 		.page-title {
             display: none !important;    
