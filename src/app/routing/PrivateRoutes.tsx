@@ -29,7 +29,7 @@ const PrivateRoutes = () => {
     <Routes>
       <Route element={<MasterLayout />}>
         {/* Redirect to Dashboard after success login/registartion */}
-        <Route path='auth/*' element={<Navigate to='/dashboard' />} />
+        <Route path='/*' element={<Navigate to='/dashboard' />} />
         {/* Pages */}
         <Route path='dashboard' element={<DashboardWrapper />} />
         <Route path='builder' element={<BuilderPageWrapper />} />
@@ -111,43 +111,10 @@ const PrivateRoutes = () => {
           path='overview/rs1/projectRS1'
           element={
             <SuspensedView>
-              <ProjectRS1 />
+              <ProjectFinal children={'RS Al Islam Group'} />
             </SuspensedView>
           }
         />
-        {/* <Route
-          path='overview/rs2/projectRS2'
-          element={
-            <SuspensedView>
-              <ProjectRS2 />
-            </SuspensedView>
-          }
-        /> */}
-        {/* <Route
-          path='overview/rs3/projectRS3'
-          element={
-            <SuspensedView>
-              <ProjectRS3 />
-            </SuspensedView>
-          }
-        />
-        <Route
-          path='overview/rs3/projectRS4'
-          element={
-            <SuspensedView>
-              <ProjectRS4 />
-            </SuspensedView>
-          }
-        />
-        <Route
-          path='overview/rs3/projectRS5'
-          element={
-            <SuspensedView>
-              <ProjectRS5 />
-            </SuspensedView>
-          }
-        /> */}
-
         <Route
           path='overview/rs2/projectRS2'
           element={

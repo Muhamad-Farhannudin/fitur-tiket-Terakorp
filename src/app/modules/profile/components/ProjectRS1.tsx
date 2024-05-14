@@ -4,6 +4,7 @@ import Form from "react-bootstrap/Form";
 import { useState } from "react";
 import { Fade } from "react-reveal";
 import TableList from "./tableList/TablesList";
+import GanttChart from "./gantt/GanttChart";
 
 const ProjectRS1: React.FC = () => {
   const [tab, setTab] = useState("List");
@@ -112,6 +113,7 @@ const ProjectRS1: React.FC = () => {
           <Fade left>
             <div className={clsx("tab-pane", { active: tab === "Ganchart" })}>
               <h1>Ganchart</h1>
+              <GanttChart />
             </div>
           </Fade>
         </div>

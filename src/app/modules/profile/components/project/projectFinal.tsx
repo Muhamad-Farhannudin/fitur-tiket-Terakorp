@@ -4,9 +4,46 @@ import Form from "react-bootstrap/Form";
 import { useEffect, useState } from "react";
 import { Fade } from "react-reveal";
 import TableList from "../tableList/TablesList";
-import axios from "axios";
+import { Gantt, Task, EventOption, StylingOption, ViewMode, DisplayOption } from "gantt-task-react";
+import "gantt-task-react/dist/index.css";
+import GanttChart from "../gantt/GanttChart";
+// import axios from "axios";
 
 const ProjectFinal: React.FC = ({ children }) => {
+  let tasks: Task[] = [
+    {
+      start: new Date(2020, 1, 1),
+      end: new Date(2020, 1, 2),
+      name: "Idea",
+      id: "Task 0",
+      type: "task",
+      progress: 45,
+      isDisabled: true,
+      styles: { progressColor: "#ffbb54", progressSelectedColor: "#ff9e0d" },
+    },
+    {
+      start: new Date(2020, 1, 8),
+      end: new Date(2020, 1, 12),
+      name: "Project ABC",
+      id: "Task 1",
+      type: "task",
+      progress: 90,
+      isDisabled: true,
+      styles: { progressColor: "#ffbb54", progressSelectedColor: "#ff9e0d" },
+    },
+    {
+      start: new Date(2020, 1, 3),
+      end: new Date(2020, 1, 7),
+      name: "Project Z",
+      id: "Task 2",
+      type: "task",
+      progress: 76,
+      isDisabled: true,
+      styles: { progressColor: "#ffbb54", progressSelectedColor: "#ff9e0d" },
+    },
+  ];
+
+
   const [tab, setTab] = useState("List");
   // const [post, setPost] = useState([]);
   // useEffect(() => {
@@ -54,11 +91,12 @@ const ProjectFinal: React.FC = ({ children }) => {
             <li>
               <Form>
                 {["checkbox"].map((type) => (
-                  <div key={`default-${type}`} className="mb-3" style={{width: "auto"}}>
+                  <div key={`default-${type}`} className="mb-3 cursor-pointer" style={{ width: "auto" }}>
                     <Form.Check // prettier-ignore
                       type={type}
                       id={`default-${type}`}
                       label={`not selected`}
+                      className={"cursor-pointer"}
                     />
                   </div>
                 ))}
@@ -67,11 +105,12 @@ const ProjectFinal: React.FC = ({ children }) => {
             <li>
               <Form>
                 {["checkbox"].map((type) => (
-                  <div key={`default-${type}`} className="mb-3" style={{width: "auto"}}>
+                  <div key={`default-${type}`} className="mb-3 cursor-pointer" style={{ width: "auto" }}>
                     <Form.Check // prettier-ignore
                       type={type}
                       id={`default-${type}`}
                       label={`Raafi`}
+                      className={"cursor-pointer"}
                     />
                   </div>
                 ))}
@@ -80,11 +119,12 @@ const ProjectFinal: React.FC = ({ children }) => {
             <li>
               <Form>
                 {["checkbox"].map((type) => (
-                  <div key={`default-${type}`} className="mb-3" style={{width: "auto"}}>
+                  <div key={`default-${type}`} className="mb-3 cursor-pointer" style={{ width: "auto" }}>
                     <Form.Check // prettier-ignore
                       type={type}
                       id={`default-${type}`}
                       label={`Andi`}
+                      className={"cursor-pointer"}
                     />
                   </div>
                 ))}
@@ -93,11 +133,12 @@ const ProjectFinal: React.FC = ({ children }) => {
             <li>
               <Form>
                 {["checkbox"].map((type) => (
-                  <div key={`default-${type}`} className="mb-3" style={{width: "auto"}}>
+                  <div key={`default-${type}`} className="mb-3 cursor-pointer" style={{ width: "auto" }}>
                     <Form.Check // prettier-ignore
                       type={type}
                       id={`default-${type}`}
                       label={`Mario`}
+                      className={"cursor-pointer"}
                     />
                   </div>
                 ))}
@@ -130,6 +171,9 @@ const ProjectFinal: React.FC = ({ children }) => {
                   <p>{item?.body}</p>
                 </div>
               ))}  */}
+              <GanttChart />
+              {/* <Gantt tasks={tasks} /> */}
+              {/* <Gantt tasks={tasks} viewMode={ViewMode.Day} onDateChange={onTaskChange} onTaskDelete={onTaskDelete} onProgressChange={onProgressChange} onDoubleClick={onDblClick} onClick={onClick} /> */}
             </div>
           </Fade>
         </div>
